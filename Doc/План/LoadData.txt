@@ -1,0 +1,40 @@
+Цель: Создать статический класс загрузка/выгрузка данных
+ Параметры:
+   - директория где хранятся с конвертированные данные из json (допустим в формате picle) /Data/Validation
+   - директория где хранятся исходные данные в json.    /home/alex/C++/Correlator/Report/Validation
+   - имя файла/директории с данными
+ * первые два параметра можно задать в конструкторе, имя файла во время вычислений
+ Функции:
+  Читает данные из Validation, параметр имя (ищем по имени)   и возвращает данные в формате IDataValid
+  Если с таким именем данных нет смотрим в каталоге с исходниками (json) если есть конвертируем и сохраняем в /Data/Validation
+  и возыращаем данные в IDataValid.
+  При чтении данных из каталога с json находятся всегда 4 файла Step0.json ... Step3.json их нужно считать в 4 переменные
+  затем вызвать функцию преобразования в класс IDataValid и записать класс в /Data/Validation с таким же именем но в формате picle
+
+  import ITestSign as its
+class IDataValid:
+	def __init__(self, fft_size, num_shifts, num_signals, num_output_points, scale_factor ):
+		self.dstep0 = None
+		self.dstep1 = None
+		self.dstep2 = None
+		self.dstep3 = None
+		self.its = its.ITestSign(fft_size, num_shifts, num_signals, num_output_points, scale_factor)
+
+	def set_step(self, d_step0, d_step1, d_step2, d_step3 ):
+		self.dstep0 = d_step0
+		self.dstep1 = d_step1
+		self.dstep2 = d_step2
+		self.dstep3 = d_step3
+
+class ITestSign:
+	def __init__(self, fft_size, num_shifts, num_signals, num_output_points, scale_factor):
+		self.fft_size = fft_size	# размер окна FFT
+		self.num_shifts = num_shifts
+		self.num_signals = num_signals
+		self.num_output_points = num_output_points
+		self.scale_factor = scale_factor
+
+Есть вопросы спроси обсудим
+
+
+
